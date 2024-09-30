@@ -10,4 +10,6 @@ public interface InstrumentosDAO {
 	void registrarInstrumento(Instrumento i);
 	void borrarInstrumento(int id);
 	void editarInstrumento(Instrumento i);
+	Instrumento obtenerInstrumentoPorId(Long id);
+	void actualizarInstrumento(Instrumento i);
 }

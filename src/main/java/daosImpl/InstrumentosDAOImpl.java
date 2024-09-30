@@ -49,4 +49,18 @@ public class InstrumentosDAOImpl implements InstrumentosDAO {
 
 	}
 
+	@Override
+	public Instrumento obtenerInstrumentoPorId(Long id) {
+		Instrumento i = this.jdbcTemplate.queryForObject(ConstantesSQL.SQL_OBTENER_INSTRUMENTO_POR_ID,
+				new InstrumentosMapper(), id);
+		return i;
+	}
+
+	@Override
+	public void actualizarInstrumento(Instrumento i) {
+		this.jdbcTemplate.update(ConstantesSQL.SQL_ACTUALIZAR_INSTRUMENTO, i.getNombre(), i.getTipo(), i.getMarca(),
+				i.getGamma(), i.getDesc(), i.getPrecio(), i.getId());
+
+	}
+
 }
