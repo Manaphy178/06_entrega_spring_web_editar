@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" href="../assets/menu.css" />
+<title>Editar Instrumento</title>
 </head>
 <body>
 <jsp:include page="menu.jsp"></jsp:include>
@@ -23,14 +24,14 @@ Editar datos del registro:
         id="description"
         rows="3"
         cols="12"
-      >${instrumento.description }</textarea
+      >${instrumento.desc }</textarea
       ><br />
 
       <label for="gamma">Gamma:</label
       ><select name="gamma" id="gamma">
-        <option value="baja">Baja</option>
-        <option value="media">Media</option>
-        <option value="alta">Alta</option></select
+        <option value="Baja">Baja</option>
+        <option value="Media">Media</option>
+        <option value="Alta">Alta</option></select
       ><br />
       <label for="precio">Precio</label
       ><input

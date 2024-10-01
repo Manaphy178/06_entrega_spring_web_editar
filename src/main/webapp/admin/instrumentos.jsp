@@ -22,6 +22,7 @@
 			<th>Gamma</th>
 			<th>Precio</th>
 			<th>&nbsp;</th>
+			<th>&nbsp;</th>
 		</tr>
 	<c:forEach items="${info}" var="elemento">
 		<tr>
@@ -31,7 +32,8 @@
 			<td class="description"> ${elemento.desc } </td>
 			<td> ${elemento.gamma } </td>
 			<td> ${elemento.precio } euros</td> 
-			<td class="delete"><a href="ServletBorrarInstrumento?id=${elemento.id}" class="delLink" onclick="return confirm('¿seguro?')">Borrar</a></td> 
+			<td class="delete"><a href="ServletBorrarInstrumento?id=${elemento.id}" class="delLink" onclick="return confirm('¿seguro?')">Borrar</a></td>
+			<td class="edit"><a href="ServletEditarInstrumento?id=${elemento.id}" class="editLink" >Editar</a></td>  
 		</tr>
 	</c:forEach>
 </table>

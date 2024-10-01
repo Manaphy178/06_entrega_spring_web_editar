@@ -14,9 +14,6 @@ import daosImpl.InstrumentosDAOImpl;
 import modelo.Instrumento;
 import utilidadesSpring.ContenedorSpring;
 
-/**
- * Servlet implementation class ServletEditarInstrumento
- */
 @WebServlet("/admin/ServletEditarInstrumento")
 public class ServletEditarInstrumento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -27,7 +24,7 @@ public class ServletEditarInstrumento extends HttpServlet {
 		InstrumentosDAO instrumentosDAO = ContenedorSpring.obtenerContenedor(getServletContext())
 				.getBean(InstrumentosDAOImpl.class);
 		Instrumento s = instrumentosDAO.obtenerInstrumentoPorId(Long.parseLong(id));
-		request.setAttribute("sombrero", s);
+		request.setAttribute("instrumento", s);
 		RequestDispatcher rd = request.getRequestDispatcher("instrumentos-editar.jsp");
 		rd.forward(request, response);
 	}

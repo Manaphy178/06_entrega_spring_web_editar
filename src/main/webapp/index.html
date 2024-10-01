@@ -11,66 +11,53 @@
       <a href="admin/"> Acceder a administracion </a>
     </div>
 
-    <h2>Listado de instrumentos</h2>
-
-    <table id="contenedor">
-      <tr>
-        <th>Nombre</th>
-        <th>Tipo</th>
-        <th>Marca</th>
-        <th>Descripcion</th>
-        <th>Gamma</th>
-        <th>Precio</th>
-        <!-- <th>&nbsp;</th> -->
-      </tr>
-
-     
-      <!-- <tr>
-        <td>${elemento.nombre}</td>
-        <td>${elemento.tipo }</td>
-        <td>${elemento.marca }</td>
-        <td class="description">${elemento.desc }</td>
-        <td>${elemento.gamma }</td>
-        <td>${elemento.precio } euros</td>
-        <td class="delete">
-          <a href="ServletBorrarInstrumento?id=${elemento.id}" class="delLink"
-            >Borrar</a
-          >
-        </td>
-      </tr> -->
-    </table>
+   <div style="margin: 10px">
+<a href="#" id="menu-inicio" >inicio</a> 
+<a href="#" id="menu-identificarme" >identificarme</a>
+<a href="#" id="menu-registrarme" >registrarme</a>
+<a href="#" id="menu-carrito" >carrito</a>
+<a href="#" id="menu-mis-pedidos" >mis pedidos</a>
+<a href="#" id="menu-mis-datos" >mis datos personales</a>
+</div>
+	<div id="contenedor"></div>
+   
 
 <script src="jquery.js" ></script>
+<script src="mustache.js" ></script>
     <script>
+    function obtenerProductos(){
       $.ajax("ServicioProductos").done(function (respuesta) {
         let instrumento = JSON.parse(respuesta);
-        console.log(instrumento);
-        let texto_html = document.getElementById("contenedor").innerHTML;
-        for (i in instrumento) {
-          texto_html += "<tr>";
-          texto_html +=
-            "<td>" +
-            instrumento[i].nombre +
-            "</td> " +
-            "<td>" +
-            instrumento[i].tipo +
-            "</td> " +
-            "<td>" +
-            instrumento[i].marca +
-            "</td> " +
-            "<td>" +
-            instrumento[i].desc +
-            "</td> " +
-            "<td>" +
-            instrumento[i].gamma +
-            "</td> " +
-            "<td>" +
-            instrumento[i].precio +
-            "&euro; </td> ";
-          texto_html += "</tr>";
-        } //end for
+       
+        let texto_html = "";
+        texto_html = Mustache.render(html_listado_productos, instrumento);
+       
         $("#contenedor").html(texto_html);
       }); //end ajax
+    }
+      
+    //operaciones del menu:
+      $("#menu-inicio").click(obtenerProductos);
+      $("#menu-registrarme").click(mostrarFormularioRegistroUsuario);
+      //fin operaciones del menu
+       let html_formulario_registro_usuario = "";
+      let html_listado_productos = "";
+
+      // Vamos a descargar todas las plantillas
+      $.get("plantillas/formulario-registro-usuario.html").done(function (res) {
+        html_formulario_registro_usuario = res;
+      });
+      $.get("plantillas/listado-productos.html").done(function (res) {
+        html_listado_productos = res;
+      });
+      //operaciones con plantillas
+function mostrarFormularioRegistroUsuario(){
+	$.get("plantillas/formulario-registro-usuario.html").
+		done(function(res){
+			$("#contenedor").html(res);
+		});
+}	
+      //fin operaciones con plantillas
     </script>
   </body>
 </html>

@@ -12,9 +12,7 @@ import daosImpl.InstrumentosDAOImpl;
 import modelo.Instrumento;
 import utilidadesSpring.ContenedorSpring;
 
-/**
- * Servlet implementation class ServletGuardarCambiosInstrumento
- */
+
 @WebServlet("/admin/ServletGuardarCambiosInstrumento")
 public class ServletGuardarCambiosInstrumento extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,7 +29,7 @@ public class ServletGuardarCambiosInstrumento extends HttpServlet {
 		i.setId(Integer.parseInt(request.getParameter("id")));
 		InstrumentosDAO instrumentoDAO = ContenedorSpring.obtenerContenedor(getServletContext())
 				.getBean(InstrumentosDAOImpl.class);
-		instrumentoDAO.registrarInstrumento(i);
+		instrumentoDAO.actualizarInstrumento(i);
 		response.sendRedirect("ServletListarInstrumento");
 	}
 
